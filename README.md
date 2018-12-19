@@ -1,2 +1,2 @@
 # mosaic
-Application needed by mobile team, it exposes an API that receive a configuration file and upload it to a MySQL database.
+Application needed by mobile team, it exposes an API that receives configuration(s) file(s) and upload it to a MySQL database.
