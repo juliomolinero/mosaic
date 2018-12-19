@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<title><?php echo getenv('APP_NAME');?></title>
+<style type="text/css">
+body{
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	background-color: rgb(245, 245, 245);
+}
+#footer{
+	text-align:center; 
+	background-color:rgb(0, 133, 195); 
+	height:20px; 
+	padding:5px 0 5px; 
+	color:#ffffff; 
+	filter:alpha(opacity=85);	
+	opacity:0.85;		
+}
+#section{
+	margin:5px;
+	min-height:400px;	
+}
+.page{
+	background-color: #ffffff;
+	width: 80%;
+	margin-left: auto; 
+	margin-right: auto;
+	min-width: 500px;
+}
+#message{
+	padding:10px;
+	width:90%;
+	margin-left: auto; 
+	margin-right: auto;
+	margin-top:20px;
+	border: solid 1px rgb(0, 133, 195);
+	border-radius:5px;
+	min-height:300px;
+}
+</style>
+</head>
+<body>
+<div class='page'>
+<div id ='section'>
+<?php $validateLink = "$this->home$this->baseUrl/user/validate-code/$this->userId/$this->validationCode"; ?>
+<div id='message'>
+<img src="<?php echo $this->home.$this->baseUrl.'/img/streemlogiclogo100.png';?>" height="48" title="<?php echo getenv('APP_NAME'); ?>&nbsp;<?= \Application\Module::VERSION ?>"/><br/><br/>
+A password reset was initiated for your email address <?php echo $this->userEmail ?>.<br><br> 
+If you did not initiate this change please disregard this email.<br><br> 
+DO NOT proceed with the instructions below.<br><br><br> 
+If you did initiate this change, please click on the link below to reset your password.<br><br> 
+<a href="<?php echo $validateLink; ?>"><?php echo $validateLink;?></a><br><br>
+</div>
+</div><!-- Content -->
+<div id='footer'>
+<?php echo 'NTT DATA -'.getenv('APP_NAME').'&nbsp;v'.\Application\Module::VERSION?>&nbsp;&copy; <?php echo date("Y"); ?>
+</div><!-- Footer -->
+</div>
+</body>
+</html>

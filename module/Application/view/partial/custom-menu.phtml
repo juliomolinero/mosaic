@@ -1,0 +1,45 @@
+<ul class="nav navbar-nav navbar-right">
+<?php if( !empty( $this->ViewModel()->getCurrent()->getVariable('userEmail') ) ){    
+    // Check if current user is an admin,
+    // Open /seat/module/Application/src/Module.php onBootstrap event for details
+    $isAdmin = $this->ViewModel()->getCurrent()->getVariable('userIsAdmin');
+    // Define what url's are exclusive for Admins
+    $adminOnly = [ '/user', '/company/list', '/data' ];    
+?> 
+ <?php foreach ($this->container as $page): 
+if( $isAdmin==0 && in_array( $page->getHref(), $adminOnly ) ){
+     continue;
+}
+?>
+ <li class="dropdown <?php echo ($page->isActive() ? 'active' : ''); ?>">
+ <?php if( count($page->pages)===0 ) {?> 
+
+<?php if ( trim($page->get('icon'))!=="" ){ ?>
+<a class="dropdown-toggle" href="<?php echo $page->getHref(); ?>">
+<span class="<?php echo $page->get("icon"); ?>" <?php echo $page->get("style");?>></span>
+</a>
+<?php } else { ?> 
+<a class="dropdown-toggle" href="<?php echo $page->getHref(); ?>"><?php echo $page->getLabel(); ?></a> 
+<?php }?>
+ 
+ 
+ <?php } else {?>
+ <a class="dropdown-toggle" data-toggle="dropdown" href="<?php echo $page->getHref(); ?>"><?php echo $page->getLabel(); ?>
+ <span class="caret"></span>
+ </a>
+<?php }?>
+ <?php if(!empty($page->pages)): ?>
+
+ <ul class="dropdown-menu">
+ <?php foreach ($page->pages as $subpage): ?>
+ <li <?php echo ($subpage->isActive() ? 'class="active"' : ''); ?>>
+ <a href="<?php echo $subpage->getHref(); ?>"><?php echo $subpage->getLabel(); ?></a>
+ </li>
+ <?php endforeach; ?>
+ </ul>
+
+ <?php endif; ?>
+ </li>
+ <?php endforeach; ?>
+<?php }?> 
+</ul>

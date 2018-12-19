@@ -1,0 +1,77 @@
+<?php // in module/Application/view/partial/paginator.phtml: ?>
+<?php if ($this->pageCount): ?>
+<div>
+  <ul class="pagination">
+  <!-- First page link -->
+  <?php  if (isset($this->previous)): ?>
+    <li>
+      <a href="<?= $this->url($this->route, [], ['query' => ['page' => $this->first]]) ?>">
+        <span class="glyphicon glyphicon-fast-backward"></span>
+      </a>
+    </li>
+  <?php else: ?>
+    <li class="disabled">
+      <a href="#">
+        <span class="glyphicon glyphicon-fast-backward"></span>
+      </a>
+    </li>
+  <?php endif ?>
+  <!-- Previous page link -->
+  <?php if (isset($this->previous)): ?>
+    <li>
+      <a href="<?= $this->url($this->route, [], ['query' => ['page' => $this->previous]]) ?>">
+        <span class="glyphicon glyphicon-backward"></span>
+      </a>
+    </li>
+  <?php else: ?>
+    <li class="disabled">
+      <a href="#">
+        <span class="glyphicon glyphicon-backward"></span>
+      </a>
+    </li>
+  <?php endif ?>
+<!-- Numbered page links -->
+  <?php foreach ($this->pagesInRange as $page): ?>
+    <?php if ($page !== $this->current): ?>
+      <li>
+        <a href="<?= $this->url($this->route, [], ['query' => ['page' => $page]]) ?>">
+          <?= $page ?>
+        </a>
+      </li>
+    <?php else: ?>
+      <li class="active">
+        <a href="#"><?= $page ?></a>
+      </li>
+    <?php endif ?>
+  <?php endforeach ?>
+  <!-- Next page link -->
+  <?php if (isset($this->next)): ?>
+    <li>
+      <a href="<?= $this->url($this->route, [], ['query' => ['page' => $this->next]]) ?>">
+        <span class="glyphicon glyphicon-forward"></span>
+      </a>
+    </li>
+  <?php else: ?>
+    <li class="disabled">
+      <a href="#">
+        <span class="glyphicon glyphicon-forward"></span>
+      </a>
+    </li>
+  <?php endif ?>
+  <!-- Last page link -->
+  <?php if (isset($this->next)): ?>
+    <li>
+      <a href="<?= $this->url($this->route, [], ['query' => ['page' => $this->last]]) ?>">
+        <span class="glyphicon glyphicon-fast-forward"></span>
+      </a>
+    </li>
+  <?php else: ?>
+    <li class="disabled">
+      <a href="#">
+        <span class="glyphicon glyphicon-fast-forward"></span>
+      </a>
+    </li>
+  <?php endif ?>
+  </ul>
+</div>
+<?php endif ?>
